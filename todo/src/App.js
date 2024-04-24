@@ -16,12 +16,12 @@ const App = () => {
 
     const submit = () => {
         setTodos([
-            ...todos, 
-            { 
-                id: new Date().getTime(), 
-                title: value, 
-                checked: false 
-            }
+            ...todos,
+            {
+                id: new Date().getTime(),
+                title: value,
+                checked: false,
+            },
         ]);
 
         erase();
@@ -37,6 +37,14 @@ const App = () => {
         } else if (e.which === ESCAPE_KEY) {
             erase();
         }
+    };
+
+    const onToggle = (todo) => {
+        setTodos(
+            todos.map((obj) =>
+                obj.id === todo.id ? { ...obj, checked: !todo.checked } : obj
+            )
+        );
     };
 
     return (
@@ -55,8 +63,19 @@ const App = () => {
                 <ul className="todo-list">
                     {todos.map((todo) => (
                         <li key={todo.id.toString()}>
-                            <span className='todo'>{todo.title}</span>
-                            <button className='remove' type="button">
+                            <span
+                                className={[
+                                    'todo',
+                                    todo.checked ? 'checked' : '',
+                                ].join(' ')}
+                                onClick={() => onToggle(todo)}
+                                onKeyPress={() => onToggle(todo)}
+                                role="button"
+                                tabIndex={0}
+                            >
+                                {todo.title}
+                            </span>
+                            <button className="remove" type="button">
                                 <MdDelete size={28} />
                             </button>
                         </li>
