@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { MdDelete } from 'react-icons/md';
 
 import './App.css';
 import NewTodo from './components/NewTodo';
+import TodoList from './components/TodoList';
 
 const App = () => {
     const [todos, setTodos] = useState([]);
@@ -34,33 +34,13 @@ const App = () => {
             <header>
                 <h1 className="title">todo</h1>
             </header>
-            <NewTodo onNewTodo={onNewTodo} />
             <section className="main">
-                <ul className="todo-list">
-                    {todos.map((todo) => (
-                        <li key={todo.id.toString()}>
-                            <span
-                                className={[
-                                    'todo',
-                                    todo.checked ? 'checked' : '',
-                                ].join(' ')}
-                                onClick={() => onToggle(todo)}
-                                onKeyPress={() => onToggle(todo)}
-                                role="button"
-                                tabIndex={0}
-                            >
-                                {todo.title}
-                            </span>
-                            <button
-                                className="remove"
-                                type="button"
-                                onClick={() => onRemove(todo)}
-                            >
-                                <MdDelete size={28} />
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <NewTodo onNewTodo={onNewTodo} />
+                <TodoList
+                    todos={todos}
+                    onToggle={onToggle}
+                    onRemove={onRemove}
+                />
             </section>
         </section>
     );

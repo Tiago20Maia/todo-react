@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTyes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const NewTodo = ({ onNewTodo }) => {
     const ESCAPE_KEY = 27;
@@ -38,4 +38,9 @@ const NewTodo = ({ onNewTodo }) => {
         />
     );
 };
+
+NewTodo.propTypes = {
+    onNewTodo: PropTypes.func.isRequired,
+};
+
 export default NewTodo;
