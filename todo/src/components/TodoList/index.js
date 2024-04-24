@@ -3,6 +3,8 @@ import { MdDelete } from 'react-icons/md';
 
 import PropTyes from 'prop-types';
 
+import './styles.css';
+
 const TodoList = ({ todos, onToggle, onRemove }) => {
     return (
         <ul className="todo-list">
