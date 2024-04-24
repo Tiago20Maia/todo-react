@@ -1,9 +1,7 @@
 import './App.css';
 
-function App() {
-  return (
-   <h1>App todo</h1>
-  );
-}
+const App = () => (
+    <h1 className='title'>TODO</h1>
+);
 
 export default App;
