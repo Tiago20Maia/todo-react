@@ -47,6 +47,10 @@ const App = () => {
         );
     };
 
+    const onRemove = (todo) => {
+        setTodos(todos.filter((obj) => obj.id !== todo.id));
+    };
+
     return (
         <section id="app" className="container">
             <header>
@@ -75,7 +79,11 @@ const App = () => {
                             >
                                 {todo.title}
                             </span>
-                            <button className="remove" type="button">
+                            <button
+                                className="remove"
+                                type="button"
+                                onClick={() => onRemove(todo)}
+                            >
                                 <MdDelete size={28} />
                             </button>
                         </li>
