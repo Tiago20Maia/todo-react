@@ -7,14 +7,7 @@ const App = () => {
     const ESCAPE_KEY = 27;
     const ENTER_KEY = 13;
 
-    const initialTodos = [
-        { id: 1, title: 'Estudar React', checked: false },
-        { id: 2, title: 'Estudar JS', checked: true },
-        { id: 3, title: 'Estudar Node JS', checked: false },
-        { id: 4, title: 'Estudar Redux', checked: false },
-    ];
-
-    const [todos] = useState(initialTodos);
+    const [todos, setTodos] = useState([]);
     const [value, setValue] = useState('');
 
     const erase = () => {
@@ -22,7 +15,15 @@ const App = () => {
     };
 
     const submit = () => {
-        console.log(value);
+        setTodos([
+            ...todos, 
+            { 
+                id: new Date().getTime(), 
+                title: value, 
+                checked: false 
+            }
+        ]);
+
         erase();
     };
 
@@ -46,7 +47,7 @@ const App = () => {
             <section className="main">
                 <input
                     className="new-todo"
-                    placeholder="o que precisa ser feito"
+                    placeholder="o que precisa ser feito?"
                     value={value}
                     onChange={onChange}
                     onKeyDown={onKeyDown}
